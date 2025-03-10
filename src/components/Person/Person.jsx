@@ -1,14 +1,21 @@
+export const Person = ({person}) => {
+  const {name, age, sex, partnerName} = person
 
-export const Person = ({person}) => (
-  <section className="Person">
-  <h2 className="Person__name">My name is {person.name}</h2>
-  {person.age !== undefined && (
-    <p className="Person__age">I am {person.age}</p>
-  )}
+  let partnerStatus = 'I am not married'
+
+  if (partnerName) {
+    partnerStatus = `${partnerName} is ${sex === 'm' ? 'my wife' : 'my husband'}`
+  }
+
+  return (
+    <section className="Person">
+    <h2 className="Person__name">My name is {name}</h2>
+    {person.age && (
+      <p className="Person__age">I am {age}</p>
+    )}
     <p className="Person__partner">
-      {person.isMarried
-        ? `${person.partnerName} is ${person.sex === 'm' ? 'my wife' : 'my husband'}`
-        : 'I am not married'}
+      {partnerStatus}
     </p>
-  </section>
-)
+    </section>
+  )
+}
